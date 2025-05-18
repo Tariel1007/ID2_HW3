@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Details - Vintage Vinyl Collection</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .record-detail {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .record-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .record-image-large {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .record-image-large:hover {
+            transform: scale(1.02);
+        }
+
+        .record-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .record-title-large {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0;
+        }
+
+        .record-artist-large {
+            font-size: 1.25rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .record-price-large {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2563eb;
+            margin: 0;
+        }
+
+        .record-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .record-tag {
+            background: #f3f4f6;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            color: #374151;
+        }
+
+        .record-description {
+            color: #4b5563;
+            line-height: 1.7;
+            margin: 1rem 0;
+        }
+
+        .record-actions-large {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .add-to-cart-large {
+            background: #2563eb;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart-large:hover {
+            background: #1d4ed8;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .record-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .record-image-large {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>Vintage Vinyl</h1>
+            <div class="nav-actions">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+                <a href="cart.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="record-detail">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Records
+        </a>
+
+        <div id="record-content">
+            <!-- Record content will be inserted here by JavaScript -->
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script>
+        // Get cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function formatPrice(price) {
+            return price.toFixed(2);
+        }
+
+        function addToCart(recordId) {
+            const record = records.find(r => r.id === recordId);
+            if (!record) return;
+
+            const existingItem = cart.find(item => item.id === recordId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: record.id,
+                    title: record.title,
+                    artist: record.artist,
+                    price: record.price,
+                    image: record.image,
+                    quantity: 1
+                });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification('Added to cart');
+        }
+
+        function updateCartCount() {
+            const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = count;
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 2000);
+        }
+
+        // Get record ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const recordId = urlParams.get('id');
+
+        // Find the record
+        const record = records.find(r => r.id === recordId);
+
+        if (record) {
+            document.title = `${record.title} - Vintage Vinyl Collection`;
+            document.getElementById('record-content').innerHTML = `
+                <div class="record-grid">
+                    <img src="${record.image}" alt="${record.title}" class="record-image-large">
+                    <div class="record-details">
+                        <h1 class="record-title-large">${record.title}</h1>
+                        <p class="record-artist-large">${record.artist}</p>
+                        <p class="record-price-large">$${formatPrice(record.price)}</p>
+                        <div class="record-tags">
+                            <span class="record-tag">${record.category}</span>
+                            <span class="record-tag">${record.condition}</span>
+                            <span class="record-tag">${record.year}</span>
+                        </div>
+                        <p class="record-description">${record.description}</p>
+                        <div class="record-actions-large">
+                            <button class="add-to-cart-large" onclick="addToCart('${record.id}')">
+                                <i class="fas fa-cart-plus"></i>
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        } else {
+            document.getElementById('record-content').innerHTML = `
+                <div class="error-message">
+                    <h2>Record not found</h2>
+                    <p>The record you're looking for doesn't exist.</p>
+                </div>
+            `;
+        }
+
+        // Initialize cart count
+        updateCartCount();
+    </script>
+</body>
+</html> 
