@@ -7,7 +7,7 @@ const records = [
     price: 29.99,
     year: 1973,
     condition: 'Near Mint',
-    image: 'dark-side.jpeg',
+    image: '/images/dark-side.jpeg',
     description: 'One of the most iconic rock albums ever made. Features the hit single "Money" and "Time".',
     inStock: true
   },
@@ -19,7 +19,7 @@ const records = [
     price: 34.99,
     year: 1959,
     condition: 'Very Good',
-    image: '/kind-of-blue.jpg',
+    image: '/images/kind-of-blue.jpg',
     description: 'A landmark jazz album that revolutionized modal jazz. Features "So What" and "Blue in Green".',
     inStock: true
   },
@@ -31,7 +31,7 @@ const records = [
     price: 24.99,
     year: 1824,
     condition: 'Mint',
-    image: '/beethoven-9.jpg',
+    image: '/images/beethoven-9.jpg',
     description: 'Beethoven\'s final symphony, featuring the famous "Ode to Joy" in the fourth movement.',
     inStock: true
   },
@@ -43,7 +43,7 @@ const records = [
     price: 39.99,
     year: 1982,
     condition: 'Mint',
-    image: '/thriller.jpg',
+    image: '/images/thriller.jpg',
     description: 'The best-selling album of all time. Features hits like "Billie Jean" and "Beat It".',
     inStock: true
   },
@@ -55,7 +55,7 @@ const records = [
     price: 32.99,
     year: 1969,
     condition: 'Near Mint',
-    image: '/abbey-road.jpeg',
+    image: '/images/abbey-road.jpeg',
     description: 'The Beatles\' final recorded album. Features the famous medley on side two.',
     inStock: true
   },
@@ -67,7 +67,7 @@ const records = [
     price: 27.99,
     year: 1977,
     condition: 'Very Good',
-    image: '/rumours.jpg',
+    image: '/images/rumours.jpg',
     description: 'A masterpiece of soft rock. Features hits like "Go Your Own Way" and "Dreams".',
     inStock: true
   },
@@ -79,7 +79,7 @@ const records = [
     price: 31.99,
     year: 1959,
     condition: 'Near Mint',
-    image: '/time-out.jpg',
+    image: '/images/time-out.jpg',
     description: 'Famous for its unusual time signatures. Features the hit "Take Five".',
     inStock: true
   },
@@ -91,7 +91,7 @@ const records = [
     price: 28.99,
     year: 1916,
     condition: 'Mint',
-    image: '/planets.jpg',
+    image: '/images/planets.jpg',
     description: 'A seven-movement orchestral suite, each movement named after a planet.',
     inStock: true
   },
@@ -103,7 +103,7 @@ const records = [
     price: 35.99,
     year: 1971,
     condition: 'Very Good',
-    image: '/led-zeppelin-iv.jpg',
+    image: '/images/led-zeppelin-iv.jpg',
     description: 'Features the iconic "Stairway to Heaven" and other classic rock anthems.',
     inStock: true
   },
@@ -115,7 +115,7 @@ const records = [
     price: 33.99,
     year: 1965,
     condition: 'Near Mint',
-    image: '/love-supreme.jpg',
+    image: '/images/love-supreme.jpg',
     description: 'A spiritual jazz masterpiece. One of Coltrane\'s most influential works.',
     inStock: true
   },
@@ -127,7 +127,7 @@ const records = [
     price: 26.99,
     year: 1725,
     condition: 'Mint',
-    image: '/four-seasons.jpg',
+    image: '/images/four-seasons.jpg',
     description: 'A set of four violin concertos, each representing a season of the year.',
     inStock: true
   },
@@ -139,7 +139,7 @@ const records = [
     price: 29.99,
     year: 2006,
     condition: 'Near Mint',
-    image: '/back-to-black.jpeg',
+    image: '/images/back-to-black.jpeg',
     description: 'A modern soul classic. Features hits like "Rehab" and "Back to Black".',
     inStock: true
   },
@@ -151,7 +151,7 @@ const records = [
     price: 30.99,
     year: 1958,
     condition: 'Very Good',
-    image: '/blue-train.jpg',
+    image: '/images/blue-train.jpg',
     description: 'A hard bop masterpiece featuring Coltrane\'s signature sound.',
     inStock: true
   },
@@ -163,7 +163,7 @@ const records = [
     price: 25.99,
     year: 1888,
     condition: 'Mint',
-    image: '/tchaikovsky-5.jpg',
+    image: '/images/tchaikovsky-5.jpg',
     description: 'A powerful symphony featuring the famous "Fate" theme.',
     inStock: true
   },
@@ -175,7 +175,7 @@ const records = [
     price: 31.99,
     year: 1991,
     condition: 'Near Mint',
-    image: '/nevermind.jpg',
+    image: '/images/nevermind.jpg',
     description: 'The album that defined grunge. Features "Smells Like Teen Spirit".',
     inStock: true
   }
