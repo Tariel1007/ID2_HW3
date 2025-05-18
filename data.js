@@ -7,7 +7,7 @@ const records = [
     price: 29.99,
     year: 1973,
     condition: 'Near Mint',
-    image: '/dark-side.jpeg',
+    image: 'dark-side.jpeg',
     description: 'One of the most iconic rock albums ever made. Features the hit single "Money" and "Time".',
     inStock: true
   },
